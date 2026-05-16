@@ -1,0 +1,1011 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Monster Energy® | Official Site | Unleash The Beast™</title>
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Black+Ops+One&family=Barlow+Condensed:wght@400;700&family=Rajdhani:wght@500;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* 1. CSS DESIGN SYSTEM */
+        :root {
+            /* Colors */
+            --black: #0A0A0A;
+            --dark-grey: #0D0D0D;
+            --neon-green: #39FF14;
+            --electric-green: #00FF41;
+            --chrome: #C0C0C0;
+            --danger-red: #CC0000;
+            --off-white: #F5F5F5;
+            
+            /* Typography Scale (Fluid) */
+            --text-xs: clamp(0.75rem, 0.7rem + 0.25vw, 0.875rem);
+            --text-base: clamp(1rem, 0.95rem + 0.25vw, 1.125rem);
+            --text-xl: clamp(1.25rem, 1.1rem + 0.75vw, 1.75rem);
+            --text-7xl: clamp(3rem, 2rem + 5vw, 7rem);
+
+            /* Spacing & Effects */
+            --space-4: 1rem;
+            --space-8: 2rem;
+            --glow-green: 0 0 20px rgba(57, 255, 20, 0.6);
+            --shadow-brutal: 4px 4px 0px var(--neon-green);
+            
+            --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* Base Styles */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            background-color: var(--black);
+            color: var(--off-white);
+            font-family: 'Barlow Condensed', sans-serif;
+            overflow-x: hidden;
+            line-height: 1.4;
+        }
+
+        /* 2. STICKY NAVIGATION */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            background: rgba(10, 10, 10, 0.9);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid transparent;
+            transition: var(--transition-smooth);
+        }
+
+        header.scrolled {
+            border-bottom: 1px solid var(--neon-green);
+            box-shadow: var(--glow-green);
+        }
+
+        nav {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo svg {
+            width: 50px;
+            fill: var(--neon-green);
+            filter: drop-shadow(0 0 5px var(--neon-green));
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--off-white);
+            text-decoration: none;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            position: relative;
+            font-size: var(--text-base);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--neon-green);
+            transition: var(--transition-smooth);
+        }
+
+        .nav-links a:hover::after { width: 100%; }
+
+        .nav-cta .btn-store {
+            background: var(--neon-green);
+            color: var(--black);
+            padding: 0.6rem 1.5rem;
+            border-radius: 50px;
+            font-weight: 800;
+            text-decoration: none;
+            transition: var(--transition-smooth);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .nav-cta .btn-store:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--glow-green);
+            background: var(--electric-green);
+        }
+
+        /* 3. FOOTER */
+        footer {
+            background: var(--dark-grey);
+            padding: 4rem 2rem 2rem;
+            position: relative;
+            border-top: 2px solid var(--neon-green);
+            overflow: hidden;
+        }
+
+        .footer-watermark {
+            position: absolute;
+            bottom: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-family: 'Black Ops One';
+            font-size: 15vw;
+            color: rgba(57, 255, 20, 0.03);
+            white-space: nowrap;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .footer-col h4 {
+            font-family: 'Black Ops One';
+            color: var(--neon-green);
+            margin-bottom: 1.5rem;
+            letter-spacing: 1px;
+        }
+
+        .footer-col ul { list-style: none; }
+        .footer-col ul li { margin-bottom: 0.8rem; }
+        .footer-col a { color: var(--chrome); text-decoration: none; transition: 0.3s; }
+        .footer-col a:hover { color: var(--neon-green); padding-left: 5px; }
+
+        .legal-bar {
+            margin-top: 4rem;
+            padding-top: 2rem;
+            border-top: 1px solid #222;
+            text-align: center;
+            font-size: var(--text-xs);
+            color: #555;
+        }
+
+        /* 4. GLOBAL ANIMATIONS */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Mobile Hamburger - Basic setup */
+        .mobile-toggle { display: none; cursor: pointer; }
+
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .mobile-toggle { display: block; font-size: 1.5rem; color: var(--neon-green); }
+        }
+    </style>
+</head>
+<body>
+
+    <header id="main-header">
+        <nav>
+            <div class="logo">
+                <svg viewBox="0 0 100 100">
+                    <!-- Simple representation of claw logo -->
+                    <path d="M30 20 L40 80 M50 15 L50 85 M70 20 L60 80" stroke="currentColor" stroke-width="8" fill="none" stroke-linecap="round"/>
+                </svg>
+            </div>
+            
+            <ul class="nav-links">
+                <li><a href="#products">Products</a></li>
+                <li><a href="#athletes">Athletes</a></li>
+                <li><a href="#events">Events</a></li>
+                <li><a href="#store">Store</a></li>
+                <li><a href="#about">About</a></li>
+            </ul>
+
+            <div class="nav-cta">
+                <a href="#store" class="btn-store">FIND A STORE</a>
+                <span class="mobile-toggle">☰</span>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Placeholder for sections -->
+        <section style="height: 100vh; display: flex; align-items: center; justify-content: center;">
+            <h1 class="reveal" style="font-family: 'Black Ops One'; font-size: var(--text-7xl); text-align: center;">
+                UNLEASH THE <span style="color: var(--neon-green);">BEAST</span>
+            </h1>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-col">
+                <h4>QUICK LINKS</h4>
+                <ul>
+                    <li><a href="#">Contact Us</a></li>
+                    <li><a href="#">Sponsorships</a></li>
+                    <li><a href="#">Careers</a></li>
+                    <li><a href="#">Monster Army</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>FOLLOW THE CHAOS</h4>
+                <div style="display: flex; gap: 1rem; font-size: 1.2rem;">
+                    <!-- Social icons would go here -->
+                    <a href="#">IG</a> <a href="#">TW</a> <a href="#">FB</a> <a href="#">YT</a>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h4>NEWSLETTER</h4>
+                <p style="font-size: var(--text-xs); margin-bottom: 1rem;">GET THE LATEST UPDATES ON DROPS AND EVENTS.</p>
+                <div style="display: flex;">
+                    <input type="email" placeholder="EMAIL ADDRESS" style="background: #222; border: 1px solid #333; color: white; padding: 0.5rem; flex: 1;">
+                    <button style="background: var(--neon-green); border: none; padding: 0.5rem 1rem; cursor: pointer; font-weight: 800;">JOIN</button>
+                </div>
+            </div>
+        </div>
+        <div class="footer-watermark">MONSTER</div>
+        <div class="legal-bar">
+            © 2026 Monster Energy Company. All Rights Reserved. Privacy Policy | Terms of Use
+        </div>
+    </footer>
+
+    <script>
+        // Scroll Effect for Header
+        const header = document.querySelector('header');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Intersection Observer for Reveal Animations
+        const observerOptions = {
+            threshold: 0.15
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    </script>
+</body>
+</html>
+<!-- HERO SECTION -->
+<section id="hero" class="hero-container">
+    <div class="hero-bg-noise"></div>
+    
+    <!-- Animated Particles -->
+    <div class="particles">
+        <!-- 20 particle spans generated via CSS -->
+        <span></span><span></span><span></span><span></span><span></span>
+        <span></span><span></span><span></span><span></span><span></span>
+        <span></span><span></span><span></span><span></span><span></span>
+        <span></span><span></span><span></span><span></span><span></span>
+    </div>
+
+    <div class="hero-content">
+        <!-- Left Side: Copy -->
+        <div class="hero-text-side">
+            <p class="eyebrow reveal">UNLEASH THE BEAST™</p>
+            <h1 class="hero-title">
+                <span class="word">THE</span>
+                <span class="word">WORLD</span>
+                <span class="word">RUNS</span>
+                <span class="word">ON</span>
+                <span class="word" style="color: var(--neon-green);">MONSTER</span>
+            </h1>
+            <p class="hero-subheading reveal">
+                Fuel your grind. Dominate every session. Monster Energy — the drink of champions, rebels, and the relentless.
+            </p>
+            <div class="hero-actions reveal">
+                <a href="#store" class="btn-primary">SHOP NOW</a>
+                <a href="#products" class="btn-secondary">EXPLORE THE LINEUP →</a>
+            </div>
+        </div>
+
+        <!-- Right Side: Product Visual -->
+        <div class="hero-image-side">
+            <div class="can-wrapper">
+                <div class="can-placeholder">
+                    <!-- This represents the 3D product mockup -->
+                    <div class="can-glow"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Social Proof Ticker -->
+    <div class="ticker-wrap">
+        <div class="ticker">
+            <div class="ticker__item">🟢 500M+ CANS SOLD ANNUALLY</div>
+            <div class="ticker__item">🟢 TRUSTED BY 1,000+ PRO ATHLETES</div>
+            <div class="ticker__item">🟢 AVAILABLE IN 50+ COUNTRIES</div>
+            <!-- Duplicate for seamless loop -->
+            <div class="ticker__item">🟢 500M+ CANS SOLD ANNUALLY</div>
+            <div class="ticker__item">🟢 TRUSTED BY 1,000+ PRO ATHLETES</div>
+            <div class="ticker__item">🟢 AVAILABLE IN 50+ COUNTRIES</div>
+        </div>
+    </div>
+</section>
+<!-- PRODUCT LINEUP SECTION -->
+<section id="products" class="products-section reveal">
+    <div class="section-header">
+        <h2 class="lineup-title">THE LINEUP</h2>
+        <div class="title-underline"></div>
+    </div>
+
+    <div class="product-grid">
+        <!-- 1. Original -->
+        <div class="product-card" style="--accent: var(--neon-green);">
+            <div class="badge favorite">FAN FAVORITE ⭐</div>
+            <div class="can-preview original-glow"></div>
+            <h3 class="product-name">MONSTER ORIGINAL</h3>
+            <p class="flavor-tag">THE ORIGINAL BEAST</p>
+            <div class="stats">
+                <span>160mg CAFFEINE</span>
+                <span>|</span>
+                <span>10 CAL</span>
+            </div>
+            <a href="#" class="btn-find">FIND A STORE</a>
+        </div>
+
+        <!-- 2. Ultra White -->
+        <div class="product-card" style="--accent: #FFFFFF;">
+            <div class="can-preview ultra-glow"></div>
+            <h3 class="product-name">ULTRA WHITE</h3>
+            <p class="flavor-tag">ULTRA-LIGHT. ULTRA-SMOOTH.</p>
+            <div class="stats">
+                <span>150mg CAFFEINE</span>
+                <span>|</span>
+                <span>0 CAL</span>
+            </div>
+            <a href="#" class="btn-find">FIND A STORE</a>
+        </div>
+
+        <!-- 3. Rehab -->
+        <div class="product-card" style="--accent: #FFD700;">
+            <div class="can-preview rehab-glow"></div>
+            <h3 class="product-name">REHAB TEA+LEM</h3>
+            <p class="flavor-tag">RECOVER. RELOAD.</p>
+            <div class="stats">
+                <span>160mg CAFFEINE</span>
+                <span>|</span>
+                <span>25 CAL</span>
+            </div>
+            <a href="#" class="btn-find">FIND A STORE</a>
+        </div>
+
+        <!-- 4. Pipeline Punch -->
+        <div class="product-card" style="--accent: #FF4F81;">
+            <div class="can-preview pipeline-glow"></div>
+            <h3 class="product-name">PIPELINE PUNCH</h3>
+            <p class="flavor-tag">TROPICAL FUEL.</p>
+            <div class="stats">
+                <span>160mg CAFFEINE</span>
+                <span>|</span>
+                <span>200 CAL</span>
+            </div>
+            <a href="#" class="btn-find">FIND A STORE</a>
+        </div>
+
+        <!-- 5. Reserve Watermelon -->
+        <div class="product-card" style="--accent: var(--danger-red);">
+            <div class="badge new">NEW</div>
+            <div class="can-preview reserve-glow"></div>
+            <h3 class="product-name">RESERVE WATERMELON</h3>
+            <p class="flavor-tag">SWEET. SAVAGE.</p>
+            <div class="stats">
+                <span>160mg CAFFEINE</span>
+                <span>|</span>
+                <span>120 CAL</span>
+            </div>
+            <a href="#" class="btn-find">FIND A STORE</a>
+        </div>
+
+        <!-- 6. Dragon Tea -->
+        <div class="product-card" style="--accent: #D4AF37;">
+            <div class="can-preview dragon-glow"></div>
+            <h3 class="product-name">DRAGON TEA</h3>
+            <p class="flavor-tag">ANCIENT POWER.</p>
+            <div class="stats">
+                <span>150mg CAFFEINE</span>
+                <span>|</span>
+                <span>35 CAL</span>
+            </div>
+            <a href="#" class="btn-find">FIND A STORE</a>
+        </div>
+    </div>
+
+    <div class="lineup-footer">
+        <p>6 FLAVORS SHOWN | 40+ VARIANTS AVAILABLE <a href="#" class="view-all">VIEW ALL →</a></p>
+    </div>
+</section>
+<!-- ATHLETES & AMBASSADORS SECTION -->
+<section id="athletes" class="athletes-section reveal">
+    <div class="athletes-inner">
+        
+        <!-- Section Header -->
+        <div class="athletes-header">
+            <h2 class="army-title">THE MONSTER ARMY</h2>
+            <p class="army-subtitle">We don't sponsor athletes. We fuel legends.</p>
+        </div>
+
+        <!-- Masonry Athlete Grid -->
+        <div class="athlete-grid">
+            
+            <!-- Card 1: Nyjah Huston (Tall) -->
+            <div class="athlete-card card-tall" style="--card-bg: linear-gradient(135deg, #1a1a1a, #000000);">
+                <span class="sport-badge">STREET</span>
+                <div class="athlete-info">
+                    <h3 class="athlete-name">NYJAH HUSTON</h3>
+                    <a href="#" class="profile-link">VIEW PROFILE →</a>
+                </div>
+            </div>
+
+            <!-- Card 2: Valentino Rossi (Standard) -->
+            <div class="athlete-card" style="--card-bg: linear-gradient(135deg, #262626, #0a0a0a);">
+                <span class="sport-badge">MOTO</span>
+                <div class="athlete-info">
+                    <h3 class="athlete-name">VALENTINO ROSSI</h3>
+                    <a href="#" class="profile-link">VIEW PROFILE →</a>
+                </div>
+            </div>
+
+            <!-- Card 3: Kayla Harrison (Wide / Tall hybrid) -->
+            <div class="athlete-card card-tall" style="--card-bg: linear-gradient(135deg, #1f1f1f, #111111);">
+                <span class="sport-badge">COMBAT</span>
+                <div class="athlete-info">
+                    <h3 class="athlete-name">KAYLA HARRISON</h3>
+                    <a href="#" class="profile-link">VIEW PROFILE →</a>
+                </div>
+            </div>
+
+            <!-- Card 4: Travis Pastrana (Standard) -->
+            <div class="athlete-card" style="--card-bg: linear-gradient(135deg, #2b2b2b, #050505);">
+                <span class="sport-badge">FMX</span>
+                <div class="athlete-info">
+                    <h3 class="athlete-name">TRAVIS PASTRANA</h3>
+                    <a href="#" class="profile-link">VIEW PROFILE →</a>
+                </div>
+            </div>
+
+            <!-- Card 5: Chloe Kim (Tall) -->
+            <div class="athlete-card card-tall" style="--card-bg: linear-gradient(135deg, #161616, #0d0d0d);">
+                <span class="sport-badge">SNOW</span>
+                <div class="athlete-info">
+                    <h3 class="athlete-name">CHLOE KIM</h3>
+                    <a href="#" class="profile-link">VIEW PROFILE →</a>
+                </div>
+            </div>
+
+            <!-- Card 6: Jason Richardson (Standard) -->
+            <div class="athlete-card" style="--card-bg: linear-gradient(135deg, #222222, #020202);">
+                <span class="sport-badge">BMX</span>
+                <div class="athlete-info">
+                    <h3 class="athlete-name">JASON RICHARDSON</h3>
+                    <a href="#" class="profile-link">VIEW PROFILE →</a>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Conversion Layer: Lead Gen CTA -->
+        <div class="join-army-cta">
+            <h4 class="join-title">JOIN THE ARMY</h4>
+            <p class="join-text">Are you a pro athlete or content creator? Apply for Monster sponsorship.</p>
+            <a href="#" class="btn-army">APPLY NOW</a>
+        </div>
+
+    </div>
+</section>
+<!-- EVENTS & CULTURE SECTION -->
+<section id="events" class="events-section reveal">
+    <div class="events-container">
+        
+        <!-- Section Title with Animated Underline -->
+        <div class="events-title-wrapper">
+            <h2 class="events-main-title">WHERE WE SHOW UP</h2>
+            <div class="animated-line"></div>
+        </div>
+
+        <!-- Event Cards Grid -->
+        <div class="events-grid">
+            
+            <!-- Event 1 -->
+            <div class="event-card">
+                <div class="event-tag-row">
+                    <span class="event-pill">SEASON 2026</span>
+                    <span class="event-pill loc">USA</span>
+                </div>
+                <h3 class="event-name">SUPERCROSS</h3>
+                <p class="event-desc">Indoor Motocross. Pure Mayhem. Feel the dirt, the noise, and the energy.</p>
+                <a href="#" class="event-link">GET TICKETS →</a>
+            </div>
+
+            <!-- Event 2 -->
+            <div class="event-card">
+                <div class="event-tag-row">
+                    <span class="event-pill">ONGOING</span>
+                    <span class="event-pill loc">NATIONWIDE</span>
+                </div>
+                <h3 class="event-name">NASCAR CUP SERIES</h3>
+                <p class="event-desc">Speed. Noise. Monster. Dominating the asphalt at 200 MPH.</p>
+                <a href="#" class="event-link">LEARN MORE →</a>
+            </div>
+
+            <!-- Event 3 -->
+            <div class="event-card">
+                <div class="event-tag-row">
+                    <span class="event-pill">SPRING 2026</span>
+                    <span class="event-pill loc">COLLEGE MARKETS</span>
+                </div>
+                <h3 class="event-name">OUTBREAK TOUR</h3>
+                <p class="event-desc">Underground Music. Major Energy. Discover the next big sound.</p>
+                <a href="#" class="event-link">VIEW DATES →</a>
+            </div>
+
+            <!-- Event 4 -->
+            <div class="event-card">
+                <div class="event-tag-row">
+                    <span class="event-pill">JAN 2026</span>
+                    <span class="event-pill loc">ASPEN, CO</span>
+                </div>
+                <h3 class="event-name">X GAMES</h3>
+                <p class="event-desc">The Original Extreme. Cold air, high stakes, and massive air.</p>
+                <a href="#" class="event-link">LEARN MORE →</a>
+            </div>
+
+        </div>
+
+        <!-- Email Capture Strip -->
+        <div class="event-signup-strip">
+            <div class="signup-content">
+                <p class="signup-text">Get Monster event alerts before anyone else.</p>
+                <form id="event-form" class="signup-form">
+                    <input type="email" id="event-email" placeholder="ENTER YOUR EMAIL" required>
+                    <button type="submit" class="btn-notify">NOTIFY ME</button>
+                </form>
+                <p class="signup-disclaimer">🔒 No spam. Just pure Monster energy.</p>
+            </div>
+        </div>
+
+    </div>
+</section>
+<!-- SOCIAL PROOF & REVIEWS SECTION -->
+<section id="reviews" class="reviews-section reveal">
+    <div class="reviews-container">
+        
+        <h2 class="section-title-centered">THE PEOPLE HAVE SPOKEN</h2>
+
+        <!-- Authority Stats Bar -->
+        <div class="stats-bar">
+            <div class="stat-block">
+                <span class="stat-number">4.8/5</span>
+                <span class="stat-label">AVERAGE RATING</span>
+            </div>
+            <div class="stat-block">
+                <span class="stat-number">200K+</span>
+                <span class="stat-label">RETAIL LOCATIONS</span>
+            </div>
+            <div class="stat-block">
+                <span class="stat-number">147</span>
+                <span class="stat-label">COUNTRIES</span>
+            </div>
+            <div class="stat-block">
+                <span class="stat-number">12M+</span>
+                <span class="stat-label">SOCIAL FOLLOWERS</span>
+            </div>
+        </div>
+
+        <!-- Testimonial Slider Container -->
+        <div class="testimonial-slider-wrap">
+            <div class="testimonial-track" id="testimonialTrack">
+                
+                <!-- Card 1 -->
+                <div class="testimonial-card">
+                    <div class="stars">⭐⭐⭐⭐⭐</div>
+                    <p class="quote">"The only way I survive 10-hour ranked grinds. Zero crash, all focus."</p>
+                    <div class="reviewer">
+                        <span class="rev-name">JAKE M.</span>
+                        <span class="rev-tag">COMPETITIVE GAMER</span>
+                    </div>
+                    <div class="card-watermark">M</div>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="testimonial-card">
+                    <div class="stars">⭐⭐⭐⭐⭐</div>
+                    <p class="quote">"Ultra White is my go-to pre-race. Crisp, clean, and gets the job done."</p>
+                    <div class="reviewer">
+                        <span class="rev-name">SOFIA R.</span>
+                        <span class="rev-tag">MARATHON RUNNER</span>
+                    </div>
+                    <div class="card-watermark">M</div>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="testimonial-card">
+                    <div class="stars">⭐⭐⭐⭐⭐</div>
+                    <p class="quote">"Monster keeps me alert through the night shifts. Absolute lifesaver."</p>
+                    <div class="reviewer">
+                        <span class="rev-name">TYLER B.</span>
+                        <span class="rev-tag">TRUCK DRIVER</span>
+                    </div>
+                    <div class="card-watermark">M</div>
+                </div>
+
+                <!-- Card 4 -->
+                <div class="testimonial-card">
+                    <div class="stars">⭐⭐⭐⭐⭐</div>
+                    <p class="quote">"Helped me crush my finals week. The Pipeline Punch is top tier flavor."</p>
+                    <div class="reviewer">
+                        <span class="rev-name">AISHA K.</span>
+                        <span class="rev-tag">COLLEGE STUDENT</span>
+                    </div>
+                    <div class="card-watermark">M</div>
+                </div>
+
+                <!-- Card 5 -->
+                <div class="testimonial-card">
+                    <div class="stars">⭐⭐⭐⭐⭐</div>
+                    <p class="quote">"Pure fuel for the skatepark. Gives me that extra pop when I need it."</p>
+                    <div class="reviewer">
+                        <span class="rev-name">MARCO D.</span>
+                        <span class="rev-tag">SKATEBOARDER</span>
+                    </div>
+                    <div class="card-watermark">M</div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Social CTA -->
+        <div class="social-footer-cta">
+            <p>Tried Monster? Share your story.</p>
+            <a href="https://instagram.com/monsterenergy" target="_blank" class="btn-outline-green">TAG US @MonsterEnergy</a>
+        </div>
+
+    </div>
+</section>
+<!-- STORE FINDER / BUY NOW SECTION -->
+<section id="store" class="store-section reveal">
+    <!-- Urgency Ticker -->
+    <div class="urgency-bar">
+        <div class="ticker-red">
+            <span>⚡ LIMITED TIME: Buy 2 Cases, Get $5 Off at Amazon · Free Shipping on Orders $35+ · ⚡</span>
+            <span>⚡ LIMITED TIME: Buy 2 Cases, Get $5 Off at Amazon · Free Shipping on Orders $35+ · ⚡</span>
+        </div>
+    </div>
+
+    <div class="store-grid">
+        <!-- Left Column: Store Search -->
+        <div class="store-search-side">
+            <h2 class="store-heading">GET YOUR MONSTER. <span class="text-neon">NOW.</span></h2>
+            <p class="store-subtext">Find Monster Energy at a store near you — or have it delivered in minutes.</p>
+            
+            <form id="zip-search-form" class="zip-form">
+                <div class="input-wrapper">
+                    <input type="text" id="zip-input" placeholder="ENTER YOUR ZIP CODE" maxlength="5">
+                    <div class="input-glow"></div>
+                </div>
+                <button type="submit" class="btn-search">FIND STORES</button>
+            </form>
+
+            <div id="search-results" class="search-feedback"></div>
+
+            <div class="retailer-row">
+                <p class="small-label">OFFICIAL RETAILERS</p>
+                <div class="retailer-pills">
+                    <a href="#" class="pill">WALMART</a>
+                    <a href="#" class="pill">TARGET</a>
+                    <a href="#" class="pill">7-ELEVEN</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Right Column: Online Ordering -->
+        <div class="store-online-side">
+            <h3 class="online-heading">ORDER ONLINE</h3>
+            <div class="delivery-options">
+                <a href="#" class="delivery-btn">
+                    <span>AMAZON 2-DAY</span>
+                    <span class="arrow">→</span>
+                </a>
+                <a href="#" class="delivery-btn">
+                    <span>INSTACART 1-HOUR</span>
+                    <span class="arrow">→</span>
+                </a>
+                <a href="#" class="delivery-btn">
+                    <span>DOORDASH NOW</span>
+                    <span class="arrow">→</span>
+                </a>
+            </div>
+
+            <div class="bundle-promo">
+                <div class="bundle-visual">
+                    <div class="case-mockup"></div>
+                    <div class="glow-ring"></div>
+                </div>
+                <a href="#" class="btn-ghost-green">BUILD YOUR CASE →</a>
+            </div>
+            
+            <div class="trust-badges">
+                <span>🔒 SECURE</span>
+                <span>✅ 100% AUTHENTIC</span>
+                <span>🚚 FAST DELIVERY</span>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- NEWSLETTER & COMMUNITY SIGNUP SECTION -->
+<section id="signup" class="signup-section reveal">
+    <!-- Electrical Arc Animation Effect -->
+    <div class="electrical-arc"></div>
+
+    <div class="signup-grid-container">
+        <!-- Left Column: Form Capture Engine -->
+        <div class="form-capture-side" id="signupFormContainer">
+            <p class="community-eyebrow">JOIN THE BEAST CLUB</p>
+            <h2 class="community-heading">GET FIRST ACCESS TO EVERYTHING.</h2>
+            <p class="community-subtext">New flavors. Merch drops. Event tickets. Athlete news. All in your inbox first.</p>
+
+            <form id="community-form" class="beast-form" novalidate>
+                <div class="field-group">
+                    <input type="text" id="user-firstname" required placeholder=" ">
+                    <label for="user-firstname">YOUR FIRST NAME</label>
+                    <span class="error-msg" id="name-error">First name is required.</span>
+                </div>
+
+                <div class="field-group">
+                    <input type="email" id="user-email" required placeholder=" ">
+                    <label for="user-email">YOUREMAIL@DOMAIN.COM</label>
+                    <span class="error-msg" id="email-error">Enter a valid email address.</span>
+                </div>
+
+                <button type="submit" class="btn-unlock-access">UNLOCK ACCESS</button>
+            </form>
+            
+            <p class="form-disclaimer">
+                No spam. Unsubscribe anytime. View our <a href="#">Monster Energy Privacy Policy</a>.
+            </p>
+        </div>
+
+        <!-- Right Column: Value Props & Social Proof Context -->
+        <div class="benefits-value-side">
+            <ul class="benefits-list">
+                <li>
+                    <span class="check-icon">✓</span>
+                    <p>Early access to new product launches and experimental flavors</p>
+                </li>
+                <li>
+                    <span class="check-icon">✓</span>
+                    <p>Exclusive discounts, promotional codes, and early merch bundle drops</p>
+                </li>
+                <li>
+                    <span class="check-icon">✓</span>
+                    <p>VIP invitations and ticket pre-sales to Monster-sponsored global events</p>
+                </li>
+                <li>
+                    <span class="check-icon">✓</span>
+                    <p>Unfiltered, behind-the-scenes premium digital content from our pro athletes</p>
+                </li>
+                <li>
+                    <span class="check-icon">✓</span>
+                    <p>Automatic entry into periodic free official Monster gear giveaways</p>
+                </li>
+            </ul>
+
+            <!-- Social Proof Counter Block -->
+            <div class="subscriber-proof-block">
+                <div class="avatar-stack">
+                    <div class="avatar-circle" style="background-color: #222;"></div>
+                    <div class="avatar-circle" style="background-color: #333;"></div>
+                    <div class="avatar-circle" style="background-color: #444;"></div>
+                    <div class="avatar-counter">+3.2M</div>
+                </div>
+                <p class="proof-statement">Join 3.2 million subscribers already running on the list.</p>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Performance Preloads -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" href="https://grainy-gradients.vercel.app/noise.svg" as="image">
+
+<!-- SEO Meta Tags -->
+<title>Monster Energy® | Official Site | Unleash The Beast™</title>
+<meta name="description" content="Fuel your grind with Monster Energy. Explore our lineup of Original, Ultra, Juice, and Java. Join the Monster Army and Unleash the Beast.">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- Open Graph / Facebook -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="Monster Energy® | Official Site">
+<meta property="og:description" content="The world's most rebellious energy drink. Fueling athletes, gamers, and legends.">
+<meta property="og:image" content="https://yourdomain.com/monster-og-image.jpg">
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Monster Energy® | Unleash The Beast™">
+<!-- Progress Bar -->
+<div id="scroll-progress"></div>
+
+<!-- Exit Intent Modal -->
+<div id="exitModal" class="exit-modal">
+    <div class="modal-content">
+        <span class="close-modal" onclick="closeModal()">×</span>
+        <h2>WAIT — DON'T LEAVE EMPTY-HANDED.</h2>
+        <p>Get 10% off your first online order when you join the Army today.</p>
+        <input type="email" placeholder="ENTER EMAIL" style="width:100%; padding:1rem; background:#222; border:1px solid #444; color:white; margin-bottom:1rem;">
+        <button class="btn-unlock-access" style="width:100%;">CLAIM MY 10%</button>
+        <p style="margin-top:1rem; font-size:0.7rem; cursor:pointer;" onclick="closeModal()">No thanks, I'll pay full price.</p>
+    </div>
+</div>
+
+<!-- Mobile Sticky Footer -->
+<div class="mobile-sticky-bar">
+    <span style="font-family:'Rajdhani'; font-weight:700; font-size:0.8rem;">🟢 MONSTER ENERGY AVAILABLE NOW</span>
+    <a href="#store" class="btn-primary" style="padding: 0.5rem 1rem; font-size:0.8rem;">SHOP NOW</a>
+</div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- PERFORMANCE & SEO (From Prompt 9) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Black+Ops+One&family=Barlow+Condensed:ital,wght@0,400;0,700;0,900;1,700&family=Rajdhani:wght@500;700&display=swap" rel="stylesheet">
+    <title>Monster Energy® | Unleash The Beast™</title>
+
+    <style>
+        /* MASTER BRAND VARIABLES */
+        :root {
+            --neon-green: #39FF14;
+            --black: #000000;
+            --off-white: #f4f4f4;
+            --chrome: #a8a8a8;
+            --danger-red: #cc0000;
+            --transition-smooth: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+            --glow-green: 0 0 15px rgba(57, 255, 20, 0.4);
+        }
+
+        /* GLOBAL RESET */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            background: var(--black); 
+            color: white; 
+            font-family: 'Barlow Condensed', sans-serif; 
+            overflow-x: hidden; 
+            line-height: 1.6;
+        }
+
+        /* UTILITY CLASSES */
+        .reveal { opacity: 0; transform: translateY(30px); transition: var(--transition-smooth); }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+        .btn-primary { 
+            background: var(--neon-green); 
+            color: var(--black); 
+            padding: 1rem 2rem; 
+            text-decoration: none; 
+            font-weight: 900; 
+            display: inline-block;
+        }
+
+        /* --- INSERT ALL PREVIOUS SECTION CSS HERE --- */
+        /* (Prompts 1 - 9 Styles go here) */
+
+        /* FINAL POLISH: Scroll Progress Bar */
+        #scroll-progress {
+            position: fixed; top: 0; left: 0; width: 0%; height: 3px;
+            background: var(--neon-green); z-index: 9999; box-shadow: var(--glow-green);
+        }
+    </style>
+</head>
+<body>
+
+    <div id="scroll-progress"></div>
+
+    <!-- 1. NAVIGATION -->
+    <!-- (Code from Prompt 2) -->
+
+    <!-- 2. HERO SECTION -->
+    <!-- (Code from Prompt 1) -->
+
+    <!-- 3. PRODUCT GRID -->
+    <!-- (Code from Prompt 3) -->
+
+    <!-- 4. ATHLETE SHOWCASE -->
+    <!-- (Code from Prompt 4) -->
+
+    <!-- 5. EVENTS & CULTURE -->
+    <!-- (Code from Prompt 5) -->
+
+    <!-- 6. REVIEWS & SOCIAL PROOF -->
+    <!-- (Code from Prompt 6) -->
+
+    <!-- 7. STORE FINDER & BUY NOW -->
+    <!-- (Code from Prompt 7) -->
+
+    <!-- 8. NEWSLETTER SIGNUP -->
+    <!-- (Code from Prompt 8) -->
+
+    <!-- 9. EXIT INTENT MODAL -->
+    <!-- (Code from Prompt 9) -->
+
+    <script>
+        /**
+         * MASTER INITIALIZATION SCRIPT
+         */
+        document.addEventListener('DOMContentLoaded', () => {
+            
+            // A. Intersection Observer for Scroll Reveals
+            const observerOptions = { threshold: 0.1 };
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if(entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                    }
+                });
+            }, observerOptions);
+
+            document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+            // B. Scroll Progress Calculation
+            window.onscroll = () => {
+                const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+                const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+                const scrolled = (winScroll / height) * 100;
+                document.getElementById("scroll-progress").style.width = scrolled + "%";
+            };
+
+            // C. Exit Intent Logic
+            let exitTriggered = false;
+            document.addEventListener('mouseleave', (e) => {
+                if (e.clientY < 0 && !exitTriggered) {
+                    const modal = document.getElementById('exitModal');
+                    if(modal) modal.style.display = 'flex';
+                    exitTriggered = true;
+                }
+            });
+
+            // D. ZIP Code Validation (From Prompt 7)
+            const zipForm = document.getElementById('zip-search-form');
+            if(zipForm) {
+                zipForm.addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    // Logic already detailed in Prompt 7
+                });
+            }
+
+            // E. Testimonial Drag Logic (From Prompt 6)
+            // (Insert Drag Script here)
+        });
+    </script>
+</body>
+</html>
